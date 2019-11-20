@@ -1,0 +1,7 @@
+# Folders
+.bloop/
+.idea/
+.metals/
+target/
+data/
+
