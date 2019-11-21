@@ -10,6 +10,7 @@ import spark_conf.Context
 
 import scala.io.Source
 import scala.reflect.ClassTag
+import org.apache.spark.sql.SaveMode
 
 object Extraction extends Context {
   implicit def kryoEncoder[A](implicit ct: ClassTag[A]): Encoder[A] =
@@ -127,8 +128,21 @@ object Extraction extends Context {
     })
 
     println("Saving data ...")
-    postsWithImports.write.option("header", "true").csv("data/posts/with_imports/")
-    postsWithoutImportsWithLinks.write.option("header", "true").csv("data/posts/with_links/")
+    postsWithImports
+    .write
+    .mode(SaveMode.Overwrite)
+    .option("header", "true")
+    .option("quote", "\"")
+    .option("escape", "\"")
+    .csv("data/posts/with_imports/")
+
+    postsWithoutImportsWithLinks
+    .write
+    .mode(SaveMode.Overwrite)
+    .option("header", "true")
+    .option("quote", "\"")
+    .option("escape", "\"")
+    .csv("data/posts/with_links/")
 
     sparkSession.stop()
   }

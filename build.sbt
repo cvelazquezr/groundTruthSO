@@ -8,5 +8,6 @@ libraryDependencies ++= Seq(
     "org.apache.spark" %% "spark-sql" % "2.4.4",
     "org.apache.spark" %% "spark-core" % "2.4.4",
     "org.apache.spark" %% "spark-mllib" % "2.4.4",
-    "org.jsoup" % "jsoup" % "1.12.1"
+    "org.jsoup" % "jsoup" % "1.12.1",
+    "mysql" % "mysql-connector-java" % "8.0.16"
 )
