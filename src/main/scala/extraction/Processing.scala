@@ -5,7 +5,6 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.{Document, Element}
 import org.jsoup.select.Elements
 
-import org.apache.spark.sql.Encoder
 import scala.io.Source
 
 
@@ -134,7 +133,7 @@ object Processing extends Context {
             }).filter(_._3.trim().length() > 0).toSeq
 
             snippets
-        }).collect().toSeq.toDF("questionID", "answerID", "code", "imports")
+        }).collect().toSeq.toDF("questionID", "answerID", "imports", "code")
 
         println("Writing the ground truth dataset into mysql ...")
         val prop = new java.util.Properties
